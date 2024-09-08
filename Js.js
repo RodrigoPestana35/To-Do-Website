@@ -11,9 +11,7 @@ document.getElementById('task_form').addEventListener('submit', function(e) {
     
     var deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
-    deleteButton.className = 'delete';
-    deleteButton.style.backgroundColor = 'red';
-    deleteButton.style.marginLeft = '10px';
+    deleteButton.className = 'deleteButton';
     deleteButton.onclick = function() {
         taskList.removeChild(li);
     };
