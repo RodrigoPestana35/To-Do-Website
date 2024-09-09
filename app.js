@@ -28,8 +28,8 @@ app.post('/tasks', (req, res) => {
 
 // Rota para apagar uma tarefa (DELETE)
 app.delete('/tasks/:id', (req, res) => {
-    const taskId = parseInt(req.params.taskId);
-    tasks = tasks.filter(task => task.id !== taskId);
+    const idTask = parseInt(req.params.id);
+    tasks = tasks.filter(task => task.id !== idTask);
     res.json({ message: 'Tarefa removida' });
 });
 
