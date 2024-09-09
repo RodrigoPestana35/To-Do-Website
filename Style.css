@@ -34,3 +34,23 @@ body {
     background-color: #3a89c9;
     border-radius: 5px;
 }
+
+.buttonAddTask{
+    margin-left: 10px;
+    background-color: #1b325f;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.inputTask{
+    width: 65%;
+    margin-left: 5px;
+    color: #000000;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
