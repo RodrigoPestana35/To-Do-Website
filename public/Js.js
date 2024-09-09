@@ -73,7 +73,15 @@ async function fetchTasks() {
                 });
                 fetchTasks(); // Atualiza a lista de tarefas após editar
             });
+            const cancelBtn = document.createElement('button');
+            cancelBtn.textContent = 'Cancel';
+            cancelBtn.className = 'editButton';
+            cancelBtn.id = 'cancelButton' + task.id;
+            cancelBtn.addEventListener('click', function() {
+                fetchTasks();
+            });
             li.appendChild(saveBtn);
+            li.appendChild(cancelBtn);
         });
         
         const deleteBtn = document.createElement('button');
