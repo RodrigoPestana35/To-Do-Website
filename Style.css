@@ -10,6 +10,10 @@ body {
     padding: 1px;
 }
 
+.title{
+    margin-left: 20px;
+}
+
 .container {
     display: flex;
     height: 100%;
@@ -17,10 +21,10 @@ body {
 
 .formCol{
     width: 20%;
-    height: 90%;
     margin-top: 20px;
     margin-left: 20px;
     padding: 20px;
+    padding-bottom:40%;
     background-color: #9cc4e4;
     border-radius: 5px;
 }
