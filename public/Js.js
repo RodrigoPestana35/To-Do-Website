@@ -35,6 +35,10 @@ async function fetchTasks() {
         li.textContent = task.task;
         li.className = 'task';
 
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.className = 'editButton';
+        
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.className = 'deleteButton';
@@ -43,6 +47,7 @@ async function fetchTasks() {
             fetchTasks(); // Atualiza a lista de tarefas após apagar
         };
 
+        li.appendChild(editBtn);
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
     });

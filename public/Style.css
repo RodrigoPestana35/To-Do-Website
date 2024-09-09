@@ -81,3 +81,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.editButton{
+    background-color: #1b325f;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
