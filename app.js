@@ -26,6 +26,19 @@ app.post('/tasks', (req, res) => {
     res.status(201).json({ message: 'Tarefa adicionada', task });
 });
 
+//Rota para atualizar uma tarefa (PUT)
+app.put('/tasks/:id', (req, res) => {
+    const idTask = parseInt(req.params.id);
+    const task = req.body.task;
+    tasks = tasks.map(t => {
+        if (t.id === idTask) {
+            t.task = task;
+        }
+        return t;
+    });
+    res.json({ message: 'Tarefa atualizada', task });
+});
+
 // Rota para apagar uma tarefa (DELETE)
 app.delete('/tasks/:id', (req, res) => {
     const idTask = parseInt(req.params.id);
