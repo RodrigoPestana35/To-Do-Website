@@ -20,15 +20,15 @@ app.get('/tasks', (req, res) => {
 
 // Rota para criar uma nova tarefa (POST)
 app.post('/tasks', (req, res) => {
-    const task = req.body.inputTask;
-    tasks.push({ id: taskId, task });
-    id++;
+    const task = req.body.task;
+    tasks.push({ id: taskId, task: task });
+    taskId++;
     res.status(201).json({ message: 'Tarefa adicionada', task });
 });
 
 // Rota para apagar uma tarefa (DELETE)
 app.delete('/tasks/:id', (req, res) => {
-    const taskId = parseInt(req.params.id);
+    const taskId = parseInt(req.params.taskId);
     tasks = tasks.filter(task => task.id !== taskId);
     res.json({ message: 'Tarefa removida' });
 });
