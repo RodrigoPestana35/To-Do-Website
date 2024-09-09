@@ -38,6 +38,11 @@ async function fetchTasks() {
         const editBtn = document.createElement('button');
         editBtn.textContent = 'Edit';
         editBtn.className = 'editButton';
+        editBtn.id = 'editButton' + task.id;
+        editBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Editando tarefa com ID:', task.id);
+        });
         
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
