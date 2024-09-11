@@ -94,5 +94,13 @@ body {
 .concludedTask{
     text-decoration: line-through;
     color: gray;
-    background-color: #bac8d3;
+    background-color: #9cc4e4;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
 }

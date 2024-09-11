@@ -53,8 +53,11 @@ app.put('/tasks/:id', (req, res) => {
             },
             { new: true }
         );
+        res.json(updatedTask);
+        console.log('Tarefa atualizada:', updatedTask);
     } catch (error) {
         res.status(500).json({ message: 'Failed to update task' });
+        console.log('Erro ao atualizar tarefa:', error);
     }
 });
 
@@ -67,11 +70,14 @@ app.put('/tasks/:id/conclude',async (req, res) => {
             task.concludedAt = Date.now();
             await task.save();
             res.json({ message: 'Task concluded', task });
+            console.log('Tarefa concluída:', task);
         } else {
             res.status(404).json({ message: 'Task not found' });
+            console.log('Tarefa não encontrada');
         }
     } catch (error) {
         res.status(500).json({ message: 'Failed to conclude task' });
+        console.log('Erro ao concluir tarefa:', error);
     }
 });
 
