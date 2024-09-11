@@ -1,9 +1,11 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
+const mongoURL = process.env.mongoDB_URL;
 
 // Conectar à base de dados
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/todoapp', {
+        await mongoose.connect(mongoURL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
