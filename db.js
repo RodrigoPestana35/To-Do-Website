@@ -8,6 +8,11 @@ const connectDB = async () => {
         await mongoose.connect(mongoURL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
+        }).then(() => {
+            console.log('MongoDB conectado');
+        }).catch((err) => {
+            console.error('Erro ao conectar à base de dados', err);
+            process.exit(1);
         });
         console.log('MongoDB conectado');
     } catch (error) {

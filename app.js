@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const Task = require('./Models/Task');
 
 // Middleware para permitir JSON no corpo das requisições
 app.use(express.json());
@@ -18,7 +19,9 @@ app.get('/tasks', async (req, res) => {
     try {
         const tasks = await Task.find();
         res.json(tasks);
+        console.log('Tarefas:', tasks);
     } catch (error) {
+        console.log('Erro ao buscar tarefas:', error);
         res.status(500).json({ message: 'Failed to fetch tasks' });
     }
 });
@@ -31,7 +34,9 @@ app.post('/tasks',async (req, res) => {
         });
         await newTask.save();
         res.status(201).json(newTask);
+        console.log('Nova tarefa adicionada:', newTask);
     } catch (error) {
+        console.log('Erro ao adicionar tarefa:', error);
         res.status(500).json({ message: 'Failed to add task' });
     }
 });
