@@ -11,17 +11,12 @@ app.use(cors());
 // Servir ficheiros estáticos da pasta 'public'
 app.use(express.static('public'));
 
-let tasks = []; // Array temporário para armazenar as tarefas
-let taskId = 1; // ID da tarefa
-
 // Rota para obter todas as tarefas (GET)
 app.get('/tasks', async (req, res) => {
     try {
         const tasks = await Task.find();
         res.json(tasks);
-        console.log('Tarefas:', tasks);
     } catch (error) {
-        console.log('Erro ao buscar tarefas:', error);
         res.status(500).json({ message: 'Failed to fetch tasks' });
     }
 });
@@ -42,10 +37,11 @@ app.post('/tasks',async (req, res) => {
 });
 
 //Rota para atualizar uma tarefa (PUT)
-app.put('/tasks/:id', (req, res) => {
+app.put('/tasks/:id',async (req, res) => {
     try{
-        const updatedTask = Task.findByIdAndUpdate(
-            req.params.id,
+        const taskId = req.params.id;
+        const updatedTask = await Task.findByIdAndUpdate(
+            taskId,
             {
                 task: req.body.task,
                 edited: true,
@@ -53,8 +49,19 @@ app.put('/tasks/:id', (req, res) => {
             },
             { new: true }
         );
-        res.json(updatedTask);
-        console.log('Tarefa atualizada:', updatedTask);
+        if(updatedTask){
+            res.json({
+                id: updatedTask._id,
+                task: updatedTask.task,
+                concluded: updatedTask.concluded,
+                createdAt: updatedTask.createdAt,
+                edited: updatedTask.edited,
+                editedAt: updatedTask.editedAt,
+                concludedAt: updatedTask.concludedAt
+            });
+            console.log('Tarefa atualizada:', updatedTask);
+        }
+
     } catch (error) {
         res.status(500).json({ message: 'Failed to update task' });
         console.log('Erro ao atualizar tarefa:', error);
@@ -78,6 +85,23 @@ app.put('/tasks/:id/conclude',async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Failed to conclude task' });
         console.log('Erro ao concluir tarefa:', error);
+    }
+});
+
+app.delete('/tasks/:id',async (req, res) => {
+    const idTask = req.params.id;
+    try{
+        const task = await Task.findByIdAndDelete(idTask);
+        if (task) {
+            res.json({ message: 'Task deleted', task });
+            console.log('Tarefa eliminada:', task);
+        } else {
+            res.status(404).json({ message: 'Task not found' });
+            console.log('Tarefa não encontrada');
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to delete task' });
+        console.log('Erro ao eliminar tarefa:', error);
     }
 });
 

@@ -80,6 +80,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .editButton{
@@ -92,7 +93,6 @@ body {
 }
 
 .concludedTask{
-    text-decoration: line-through;
     color: gray;
     background-color: #9cc4e4;
     margin-top: 10px;

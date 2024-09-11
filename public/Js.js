@@ -96,8 +96,25 @@ async function fetchTasks() {
                 fetchTasks(); // Atualiza a lista de tarefas após apagar
             };
 
+            if(task.edited){
+                const editedAt = new Date(task.editedAt);
+                const editedAtString = editedAt.toLocaleString();
+                const p = document.createElement('p');
+                p.textContent = `Edited at: ${editedAtString}`;
+                li.appendChild(p);
+            }
+
             li.appendChild(editBtn);
             li.appendChild(concludeBtn);
+        } else {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'deleteButton';
+            deleteBtn.onclick = async function () {
+                await fetch(`http://localhost:3000/tasks/${task._id}`, { method: 'DELETE' });
+                fetchTasks(); // Atualiza a lista de tarefas após apagar
+            };
+            li.appendChild(deleteBtn);
         }
         taskList.appendChild(li);
     });
