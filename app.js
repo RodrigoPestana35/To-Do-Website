@@ -14,36 +14,43 @@ let tasks = []; // Array temporário para armazenar as tarefas
 let taskId = 1; // ID da tarefa
 
 // Rota para obter todas as tarefas (GET)
-app.get('/tasks', (req, res) => {
-    res.json(tasks);
+app.get('/tasks', async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.json(tasks);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to fetch tasks' });
+    }
 });
 
 // Rota para criar uma nova tarefa (POST)
-app.post('/tasks', (req, res) => {
-    const task = req.body.task;
-    tasks.push({ id: taskId, task: task });
-    taskId++;
-    res.status(201).json({ message: 'Tarefa adicionada', task });
+app.post('/tasks',async (req, res) => {
+    try{
+        const newTask = new Task({
+            task: req.body.task
+        });
+        await newTask.save();
+        res.status(201).json(newTask);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to add task' });
+    }
 });
 
 //Rota para atualizar uma tarefa (PUT)
 app.put('/tasks/:id', (req, res) => {
-    const idTask = parseInt(req.params.id);
-    const task = req.body.task;
-    tasks = tasks.map(t => {
-        if (t.id === idTask) {
-            t.task = task;
-        }
-        return t;
-    });
-    res.json({ message: 'Tarefa atualizada', task });
-});
-
-// Rota para apagar uma tarefa (DELETE)
-app.delete('/tasks/:id', (req, res) => {
-    const idTask = parseInt(req.params.id);
-    tasks = tasks.filter(task => task.id !== idTask);
-    res.json({ message: 'Tarefa removida' });
+    try{
+        const updatedTask = Task.findByIdAndUpdate(
+            req.params.id,
+            {
+                task: req.body.task,
+                edited: true,
+                editedAt: Date.now()
+            },
+            { new: true }
+        );
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to update task' });
+    }
 });
 
 // Iniciar o servidor
