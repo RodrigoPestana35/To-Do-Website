@@ -53,6 +53,23 @@ app.put('/tasks/:id', (req, res) => {
     }
 });
 
+app.put('/tasks/:id/conclude',async (req, res) => {
+    const idTask = req.params.id;
+    try{
+        const task = await Task.findById(idTask);
+        if (task) {
+            task.concluded = true;
+            task.concludedAt = Date.now();
+            await task.save();
+            res.json({ message: 'Task concluded', task });
+        } else {
+            res.status(404).json({ message: 'Task not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to conclude task' });
+    }
+});
+
 // Iniciar o servidor
 const connectDB = require('./db');
 connectDB();
