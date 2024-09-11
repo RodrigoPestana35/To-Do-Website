@@ -46,6 +46,10 @@ app.delete('/tasks/:id', (req, res) => {
     res.json({ message: 'Tarefa removida' });
 });
 
+// Iniciar o servidor
+const connectDB = require('./db');
+connectDB();
+
 app.listen(port, () => {
     console.log(`Servidor a correr em http://localhost:${port}`);
 });
