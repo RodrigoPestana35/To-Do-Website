@@ -168,7 +168,6 @@ app.post('/login', async (req, res) => {
 
 // Rota para terminar sessão (POST)
 app.post('/logout', (req, res) => {
-    res.redirect('registerAndLogin.html');
     res.json({ message: 'User logged out' });
 });
 
