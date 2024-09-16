@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 // Rota para obter todas as tarefas (GET)
 app.get('/tasks', authMidleware, async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({userId: req.user});
         res.json(tasks);
     } catch (error) {
         res.status(500).json({ message: 'Failed to fetch tasks' });
@@ -46,7 +46,8 @@ app.get('/tasks', authMidleware, async (req, res) => {
 app.post('/tasks', authMidleware, async (req, res) => {
     try{
         const newTask = new Task({
-            task: req.body.task
+            task: req.body.task,
+            userId: req.user
         });
         await newTask.save();
         res.status(201).json(newTask);
@@ -163,6 +164,12 @@ app.post('/login', async (req, res) => {
         console.log('Erro ao fazer login:', error);
         res.status(500).json({ message: 'Failed to login' });
     }
+});
+
+// Rota para terminar sessão (POST)
+app.post('/logout', (req, res) => {
+    res.redirect('registerAndLogin.html');
+    res.json({ message: 'User logged out' });
 });
 
 // Iniciar o servidor
