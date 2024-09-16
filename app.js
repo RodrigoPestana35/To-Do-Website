@@ -145,6 +145,19 @@ app.post('/login', async (req, res) => {
     }
 });
 
+const authMidleware = (req, res, next) => {
+    const token = req.header('x-auth-token');
+    if (!token) return res.status(401).json({ message: 'Access denied' });
+    try{
+        const decoded = jwt.verify(token, 'secret');
+        req.user = decoded.id;
+        next();
+    } catch (error) {
+        console.log('Erro ao verificar token:', error);
+        res.status(401).json({ message: 'Invalid token' });
+    }
+}
+
 // Iniciar o servidor
 const connectDB = require('./db');
 connectDB();
