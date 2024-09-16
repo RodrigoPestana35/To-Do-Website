@@ -1,3 +1,8 @@
+const token = localStorage.getItem('token');
+if (!token) {
+    window.location.href = 'registerAndLogin.html';
+}
+
 document.getElementById('task_form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
