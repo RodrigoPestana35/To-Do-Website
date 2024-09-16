@@ -12,8 +12,22 @@ app.use(cors());
 // Servir ficheiros estáticos da pasta 'public'
 app.use(express.static('public'));
 
+// Middleware para verificar autenticação
+const authMidleware = (req, res, next) => {
+    const token = req.header('x-auth-token');
+    if (!token) return res.status(401).json({ message: 'Access denied' });
+    try{
+        const decoded = jwt.verify(token, 'secret');
+        req.user = decoded.id;
+        next();
+    } catch (error) {
+        console.log('Erro ao verificar token:', error);
+        res.status(401).json({ message: 'Invalid token' });
+    }
+}
+
 // Rota para obter todas as tarefas (GET)
-app.get('/tasks', async (req, res) => {
+app.get('/tasks', authMidleware, async (req, res) => {
     try {
         const tasks = await Task.find();
         res.json(tasks);
@@ -23,7 +37,7 @@ app.get('/tasks', async (req, res) => {
 });
 
 // Rota para criar uma nova tarefa (POST)
-app.post('/tasks',async (req, res) => {
+app.post('/tasks', authMidleware, async (req, res) => {
     try{
         const newTask = new Task({
             task: req.body.task
@@ -38,7 +52,7 @@ app.post('/tasks',async (req, res) => {
 });
 
 //Rota para atualizar uma tarefa (PUT)
-app.put('/tasks/:id',async (req, res) => {
+app.put('/tasks/:id', authMidleware, async (req, res) => {
     try{
         const taskId = req.params.id;
         const updatedTask = await Task.findByIdAndUpdate(
@@ -69,7 +83,7 @@ app.put('/tasks/:id',async (req, res) => {
     }
 });
 
-app.put('/tasks/:id/conclude',async (req, res) => {
+app.put('/tasks/:id/conclude', authMidleware, async (req, res) => {
     const idTask = req.params.id;
     try{
         const task = await Task.findById(idTask);
@@ -89,7 +103,7 @@ app.put('/tasks/:id/conclude',async (req, res) => {
     }
 });
 
-app.delete('/tasks/:id',async (req, res) => {
+app.delete('/tasks/:id', authMidleware, async (req, res) => {
     const idTask = req.params.id;
     try{
         const task = await Task.findByIdAndDelete(idTask);
@@ -144,19 +158,6 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Failed to login' });
     }
 });
-
-const authMidleware = (req, res, next) => {
-    const token = req.header('x-auth-token');
-    if (!token) return res.status(401).json({ message: 'Access denied' });
-    try{
-        const decoded = jwt.verify(token, 'secret');
-        req.user = decoded.id;
-        next();
-    } catch (error) {
-        console.log('Erro ao verificar token:', error);
-        res.status(401).json({ message: 'Invalid token' });
-    }
-}
 
 // Iniciar o servidor
 const connectDB = require('./db');
