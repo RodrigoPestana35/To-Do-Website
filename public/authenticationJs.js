@@ -2,12 +2,12 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     event.preventDefault();
     const username = document.getElementById('registerUsername').value;
     const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+    let password = document.getElementById('registerPassword').value;
+    let confirmPassword = document.getElementById('confirmPassword').value;
     if (password !== confirmPassword) {
+        document.getElementById('registerPassword').value = '';
+        document.getElementById('confirmPassword').value = '';
         alert('Passwords do not match');
-        password = '';
-        confirmPassword = '';
         return;
     }
     const response = await fetch('http://localhost:3000/register', {

@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 const Task = require('./Models/Task');
+const User = require('./Models/User');
 const jwt = require('jsonwebtoken');
 
 // Middleware para permitir JSON no corpo das requisições
@@ -25,6 +26,10 @@ const authMidleware = (req, res, next) => {
         res.status(401).json({ message: 'Invalid token' });
     }
 }
+
+app.get('/', (req, res) => {
+    res.redirect('/index.html');
+});
 
 // Rota para obter todas as tarefas (GET)
 app.get('/tasks', authMidleware, async (req, res) => {
