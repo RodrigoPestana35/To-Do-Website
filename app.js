@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 const Task = require('./Models/Task');
 const User = require('./Models/User');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // Middleware para permitir JSON no corpo das requisições

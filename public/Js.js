@@ -16,6 +16,7 @@ document.getElementById('task_form').addEventListener('submit', async function (
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'x-auth-token': token
         },
         body: JSON.stringify({ task: task })
     });
@@ -31,7 +32,11 @@ document.getElementById('task_form').addEventListener('submit', async function (
 });
 
 async function fetchTasks() {
-    const response = await fetch('http://localhost:3000/tasks');
+    const response = await fetch('http://localhost:3000/tasks', {
+        headers: {
+            'x-auth-token': token
+        }
+    });
     const tasks = await response.json();
     console.log('TAREFAS AQUI:', tasks);
 
@@ -77,6 +82,7 @@ async function fetchTasks() {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
+                            'x-auth-token': token
                         },
                         body: JSON.stringify({ task: newTask })
                     });
@@ -97,7 +103,12 @@ async function fetchTasks() {
             concludeBtn.textContent = 'Conclude';
             concludeBtn.className = 'deleteButton';
             concludeBtn.onclick = async function () {
-                await fetch(`http://localhost:3000/tasks/${task._id}/conclude`, { method: 'PUT' });
+                await fetch(`http://localhost:3000/tasks/${task._id}/conclude`, { 
+                    method: 'PUT',
+                    headers: {
+                        'x-auth-token': token
+                    }
+                 });
                 fetchTasks(); // Atualiza a lista de tarefas após apagar
             };
 
@@ -116,7 +127,12 @@ async function fetchTasks() {
             deleteBtn.textContent = 'Delete';
             deleteBtn.className = 'deleteButton';
             deleteBtn.onclick = async function () {
-                await fetch(`http://localhost:3000/tasks/${task._id}`, { method: 'DELETE' });
+                await fetch(`http://localhost:3000/tasks/${task._id}`, { 
+                    method: 'DELETE',
+                    headers: {
+                        'x-auth-token': token
+                    }
+                });
                 fetchTasks(); // Atualiza a lista de tarefas após apagar
             };
             li.appendChild(deleteBtn);
