@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 const Task = require('./Models/Task');
+const jwt = require('jsonwebtoken');
 
 // Middleware para permitir JSON no corpo das requisições
 app.use(express.json());
@@ -102,6 +103,45 @@ app.delete('/tasks/:id',async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Failed to delete task' });
         console.log('Erro ao eliminar tarefa:', error);
+    }
+});
+
+// Rota para fazer registo de um novo utilizador (POST)
+app.post('/register', async (req, res) => {
+    const {username, email, password} = req.body;
+    try {
+        let user = await User.findOne({ email });
+        if (user) return res.status(400).json({ message: 'User already exists' });
+        user = new User({
+            username,
+            email,
+            password
+        });
+        await user.save();
+        res.status(201).json(user);
+        console.log('Novo utilizador registado:');
+    } catch (error) {
+        console.log('Erro ao registar utilizador:', error);
+        res.status(500).json({ message: 'Failed to register user' });
+    }
+});
+
+// Rota para fazer login (POST)
+
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
+
+        const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '1h' });
+        res.json({ token });
+    } catch (error) {
+        console.log('Erro ao fazer login:', error);
+        res.status(500).json({ message: 'Failed to login' });
     }
 });
 
