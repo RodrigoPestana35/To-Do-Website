@@ -1,14 +1,30 @@
-body {
+html, body {
     background-color: #e9f2f9;
     font-family: Arial, sans-serif;
     margin: 0;
-    height: 100vh;
+    height: 100%;
+    overflow: hidden;
 }
 
 .topBar {
     background-color: #1b325f;
     color: #fff;
-    padding: 1px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#logoutButton{
+    background-color: #f26c4f;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 20px;
 }
 
 .title{

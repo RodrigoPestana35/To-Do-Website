@@ -29,7 +29,7 @@ const authMidleware = (req, res, next) => {
 }
 
 app.get('/', (req, res) => {
-    res.redirect('/index.html');
+    res.redirect('registerAndLogin.html');
 });
 
 // Rota para obter todas as tarefas (GET)

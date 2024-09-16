@@ -141,4 +141,9 @@ async function fetchTasks() {
     });
 }
 
+document.getElementById('logoutButton').addEventListener('click', function () {
+    localStorage.removeItem('token');
+    window.location.href = 'registerAndLogin.html';
+});
+
 fetchTasks(); // Carregar as tarefas ao carregar a página
