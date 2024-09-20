@@ -14,17 +14,17 @@ This is a simple web application for task management (To-Do List), where users c
 ## Technologies Used
 
 - **Front-End**:
--- HTML5, CSS3, JavaScript
--- Fetch API for communication with the back-end
+    - HTML5, CSS3, JavaScript
+    - Fetch API for communication with the back-end
 - **Back-End**:
--- Node.js with  Express
--- MongoDB for data persistence
+   - Node.js with  Express
+    - MongoDB for data persistence
 - **Authentication**:
--- JSON Web Tokens (JWT)
+    - JSON Web Tokens (JWT)
 - **Database**:
--- MongoDB Atlas (via Mongoose)
+    - MongoDB Atlas (via Mongoose)
 - **Version Control**:
--- Git e GitHub
+    - Git e GitHub
 
 ## Dependencies
 
