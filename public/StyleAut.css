@@ -16,8 +16,11 @@ body{
 }
 
 #registerDiv, #loginDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 45%;
-    background-color: #b3e3f5;
+    background-color: #9cc4e4;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -41,7 +44,7 @@ input {
 button {
     width: 30%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #1b325f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -50,7 +53,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #132a5a;
 }
 
 #registerDiv input, #loginDiv input {
