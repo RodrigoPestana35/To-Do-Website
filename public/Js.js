@@ -143,6 +143,7 @@ async function fetchTasks() {
 
 document.getElementById('logoutButton').addEventListener('click', function () {
     localStorage.removeItem('token');
+    history.pushState(null, null, 'registerAndLogin.html');
     window.location.href = 'registerAndLogin.html';
 });
 
