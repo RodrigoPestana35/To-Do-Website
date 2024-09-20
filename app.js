@@ -171,6 +171,18 @@ app.post('/logout', (req, res) => {
     res.json({ message: 'User logged out' });
 });
 
+app.get('/me', async (req, res) => {
+    try {
+        const user = await User.findOne(req.user);
+        console.log('User:', user.username);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        const username = user.username
+        res.json({ username: username });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to fetch user' });
+    }
+});
+
 // Iniciar o servidor
 const connectDB = require('./db');
 connectDB();

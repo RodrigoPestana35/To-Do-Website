@@ -147,11 +147,28 @@ document.getElementById('logoutButton').addEventListener('click', function () {
     window.location.href = 'registerAndLogin.html';
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
     if (!token) {
         window.location.href = 'registerAndLogin.html';
     }
 })
 
+async function  putUsername() {
+    const response = await fetch('http://localhost:3000/me', {
+        method: 'GET',
+        headers: {
+            'x-auth-token': token
+        }
+    });
+    if (!response.ok) {
+        console.error('Erro ao obter username:', response);
+        return;
+    }
+    const user = await response.json();
+    console.log(user);
+    document.getElementById('usernameLabel').textContent = user.username;
+}
+
+putUsername();
 fetchTasks(); // Carregar as tarefas ao carregar a página
