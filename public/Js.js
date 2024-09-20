@@ -146,4 +146,11 @@ document.getElementById('logoutButton').addEventListener('click', function () {
     window.location.href = 'registerAndLogin.html';
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'registerAndLogin.html';
+    }
+})
+
 fetchTasks(); // Carregar as tarefas ao carregar a página
