@@ -1,47 +1,47 @@
 # To-Do List Web App
 
-## Descrição
+## Description
 
-Esta é uma aplicação web simples de lista de tarefas (To-Do List), onde os utilizadores podem criar, visualizar, editar, e marcar tarefas como concluídas. O objetivo do projeto é fornecer uma interface clara e intuitiva para gerir tarefas do dia a dia, com funcionalidades de autenticação de utilizador e persistência de dados em um banco de dados.
+This is a simple web application for task management (To-Do List), where users can create, view, edit, and mark tasks as completed. The project's goal is to provide a clear and intuitive interface for managing daily tasks, with user authentication and data persistence in a database.
 
-## Funcionalidades
-- Adicionar, visualizar, editar e remover tarefas.
-- Marcar tarefas como concluídas, diferenciando visualmente as completas das pendentes.
-- Persistência de tarefas usando uma base de dados.
-- Autenticação de utilizador com login e registo, utilizando JWT.
-- Responsivo, adaptando-se a diferentes tamanhos de ecrãs sem barras de rolagem.
+## Features
+- Add, view, edit, and delete tasks.
+- Mark tasks as completed, visually distinguishing completed from pending tasks.
+- Task persistence using a database.
+- User authentication with login and registration using JWT.
+- Responsive, adapting to different screen sizes without scrollbars.
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - **Front-End**:
 -- HTML5, CSS3, JavaScript
--- Fetch API para comunicação com o back-end
+-- Fetch API for communication with the back-end
 - **Back-End**:
--- Node.js com Express
--- MongoDB para persistência de dados
-- **Autenticação**:
+-- Node.js with  Express
+-- MongoDB for data persistence
+- **Authentication**:
 -- JSON Web Tokens (JWT)
-- **Banco de Dados**:
+- **Database**:
 -- MongoDB Atlas (via Mongoose)
-- **Controle de Versão**:
+- **Version Control**:
 -- Git e GitHub
 
-## Dependências
+## Dependencies
 
-- **Node.js**: Ambiente de execução para o servidor.
-- **Express**: Framework para construção do back-end.
-- **Mongoose**: ODM para interagir com MongoDB.
-- **JWT**: Para autenticação de utilizador.
-- **Cors**: Para lidar com problemas de Cross-Origin Resource Sharing.
-- **Body-parser**: Para parsing de requisições HTTP.
+- **Node.js**: Runtime environment for the server.
+- **Express**: Framework for building the back-end.
+- **Mongoose**: ODM for interacting with MongoDB.
+- **JWT**: For user authentication.
+- **Cors**: To handle Cross-Origin Resource Sharing issues.
+- **Body-parser**: For parsing HTTP requests.
 
-Para instalar todas as dependências necessárias, execute o seguinte comando:
+To install all necessary dependencies, run the following command:
 
 ```sh
 npm install
 ```
 
-Estrutura do Projeto
+## Project Structure
 
 ```sh
 ├── public
@@ -57,39 +57,39 @@ Estrutura do Projeto
 ├── package.json
 └── README.md
 ```
-public/: Contém os ficheiros do front-end.
-models/: Contém os modelos da base de dados (ex. Task.js).
+public/: Contains the front-end files.
+models/: Contains the database models.
 
-## Como Executar
+## How to Run
 
-### Clonar o repositório
+### Clone the repository
 
 ```sh
 git clone https://github.com/teu-repositorio/to-do-list-web-app.git
 ```
 
-### Instalar as dependências:
+### Install dependencies:
 
 ```sh
 npm install
 ```
 
-### Iniciar o servidor:
+### Start the server:
 
 ```sh
 node app.js
 ```
 
-### Aceder à aplicação
+### Access the application
 ```sh
 http://localhost:3000
 ```
 
-## Melhorias Futuras
-- Adicionar suporte para múltiplos utilizadores com diferentes listas de tarefas.
-- Integração com notificações push para lembrar tarefas.
-- Melhorias na segurança, incluindo hashing de senhas e CSRF protection.
+## Future Improvements
+- Push notifications integration to remind tasks.
+- Task grouping by type.
+- Add more details to tasks.
 
-## Contribuições
+## Contributions
 
-Sinta-se à vontade para abrir uma issue ou enviar um pull request com melhorias e sugestões.
+Feel free to open an issue or submit a pull request with improvements and suggestions.
