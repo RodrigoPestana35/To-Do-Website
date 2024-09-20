@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register/Login</title>
+    <link rel="stylesheet" href="StyleAut.css">
 </head>
 <body>
-    <div>
-        <form id="registerForm">
-            <input type="text" name="username" id="registerUsername" placeholder="Username" required>
-            <input type="text" name="email" id="registerEmail" placeholder="Email" required>
-            <input type="password" name="password" id="registerPassword" placeholder="Password" required>
-            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-    <div>
-        <form id="loginForm">
-            <input type="text" name="email" id="loginEmail" placeholder="Email" required>
-            <input type="password" name="password" id="loginPassword" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
+    <div id="content">
+        <div id="registerDiv">
+            <form id="registerForm">
+                <input type="text" name="username" id="registerUsername" placeholder="Username" required>
+                <input type="text" name="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" name="password" id="registerPassword" placeholder="Password" required>
+                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div id="loginDiv">
+            <form id="loginForm">
+                <input type="text" name="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" name="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </div>
     <script src="authenticationJs.js"></script>
 </body>

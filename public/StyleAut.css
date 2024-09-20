@@ -1,0 +1,73 @@
+body{
+    background-color: #e9f2f9;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#content{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+#registerDiv, #loginDiv {
+    width: 45%;
+    background-color: #b3e3f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 30%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#registerDiv input, #loginDiv input {
+    width: 100%; /* Ocupar 100% da largura da div */
+    padding: 10px; /* Espaçamento interno dos elementos */
+    margin-bottom: 15px; /* Espaçamento entre os elementos */
+    box-sizing: border-box; /* Garantir que o padding não ultrapasse a largura definida */
+}
+
+/* Ajustar o espaçamento específico para o botão */
+#registerDiv button, #loginDiv button {
+    margin-bottom: 0; /* Remover margin do último botão */
+    margin-top: 20px; /* Adicionar um pouco de margem acima do botão */
+}
+
+/* Opcional: adicionar um estilo de foco nos inputs */
+#registerDiv input:focus, #loginDiv input:focus {
+    border: 2px solid #007bff; /* Destaque ao focar no input */
+    outline: none; /* Remover a borda padrão */
+}
