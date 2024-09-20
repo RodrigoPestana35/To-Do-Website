@@ -171,9 +171,9 @@ app.post('/logout', (req, res) => {
     res.json({ message: 'User logged out' });
 });
 
-app.get('/me', async (req, res) => {
+app.get('/me', authMidleware , async (req, res) => {
     try {
-        const user = await User.findOne(req.user);
+        const user = await User.findById(req.user);
         console.log('User:', user.username);
         if (!user) return res.status(404).json({ message: 'User not found' });
         const username = user.username
