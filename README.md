@@ -65,7 +65,7 @@ models/: Contains the database models.
 ### Clone the repository
 
 ```sh
-git clone https://github.com/teu-repositorio/to-do-list-web-app.git
+git clone git@github.com:RodrigoPestana35/To-Do-Website.git
 ```
 
 ### Install dependencies:
